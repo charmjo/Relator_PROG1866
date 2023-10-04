@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .fieldWrapper{
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="fieldWrapper">
+            <label for="firstNum">First Number</label>
+            <input type="text" id="firstNum">
+        </div>
+        <div class="fieldWrapper">
+            <label for="secondNum">Second Number</label>
+            <input type="text" id="secondNum">
+        </div>
+        <div class="fieldWrapper">
+            <input onclick="addCalc()" type="submit" value="Add">
+        </div>
+        <div id="output">
+
+        </div>
+
+        <script>
+            function addCalc () {
+                let firstNum = parseFloat(document.getElementById('firstNum').value);
+                let secondNum =parseFloat(document.getElementById('secondNum').value);
+                
+                let sum = firstNum + secondNum;
+                let statement = ``;
+
+                if(sum > 0){
+                    statement = `The sum of your numbers is positive: `;
+                } else if (sum < 0) {
+                    statement = `The sum of your numbers is negative: `;
+                } else {
+                    statement = `The sum of your numbers is: `;
+                }
+
+                document.getElementById('output').innerHTML = statement + sum;
+            }
+        </script>
+    </main>
+</body>
+</html>

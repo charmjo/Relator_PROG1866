@@ -1,0 +1,140 @@
+/* downloading is faster if YOUR SERVER is FASTER than google's server but it will take resources to you server. */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+
+body {
+    width: 1200px;
+    margin: 0 auto;
+    box-shadow: 0 0 100px black;
+    padding: 20px;
+    font-family: 'Open Sans', sans-serif;
+}
+img, video{
+    max-width: 100%;
+    display: block;
+
+}
+header, nav, footer, main, aside, img {
+    /* border: 2px solid blue; */
+}
+.main-container-grid{
+    display: grid;
+    grid-template-columns: 8fr 2fr;
+    background-color: #D4F1F4;
+}
+
+.pad-20{
+    padding: 20px;
+}
+
+.mar-20{
+    margin: 20px;
+}
+
+nav{
+    text-align: center;
+    background-color: #05445E;
+}
+
+/* Some notes: 
+1. When inline-block is removed, it removes the padding
+2. when block is used, the padding is passed to each anchor item
+3. When inline is used, there is no padding */
+/* normal */
+nav a{
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: burlywood;
+    font-weight: bold;
+}
+
+/* pseudo-class */
+nav a:hover{
+    background-color: powderblue;
+}
+
+aside {
+    background-color: #75E6DA;
+}
+
+footer{
+    color: burlywood;
+    background-color: #05445E;
+    text-align: center;
+}
+
+header{
+    font-size: 20px;
+    font-weight: bold;
+    font-style: italic;
+    text-align: right;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.tagline{
+    color: #05445E;
+    font-size: 30px;
+    align-self: center;
+}
+
+section .video-align{
+    align-content: center;
+}
+
+header > img {
+    height: 120px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+
+}
+
+.shape1{
+    overflow: hidden;
+    clip-path: circle();
+}
+
+.shape2{
+    overflow: hidden;
+    clip-path: polygon(3.97% 165px, 9.66% 59.35%, 81.04% 482px, 93.01% 103px, 49.7% 8.74%);
+}
+
+
+
+/* media queries */
+@media only screen and (max-width:1239px){
+    body{
+        width: 96%;
+        padding: 2%;
+    }
+}
+
+@media only screen and (max-width:959px){
+    .main-container-grid{
+        grid-template-columns: 8fr 3fr;
+    }
+}
+
+/* Popular media breakpoint because of the iPhone. Anything below 767 is a mobile view */
+@media only screen and (max-width:767px){
+    .tagline{
+        font-size: 20px;
+        text-align: center;
+        margin-bottom:  15px;
+    }
+    header img {
+        margin:auto;
+    }
+    header{
+        grid-template-columns: 1fr;
+    }
+    .main-container-grid{
+        grid-template-columns: 1fr;
+    }
+}
