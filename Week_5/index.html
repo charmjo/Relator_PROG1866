@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/custom.js"></script>
+
+</head>
+<body>
+    <main>
+        <!-- return false prevents the program from going to the next page -->
+        <!-- return false are client-side forms, usually for client-side processes -->
+        <form onsubmit="return formHandler()"  action="process.html" method="post">
+            <div class="fieldWrapper">
+                <!-- ids are case-sensitive -->
+                <!-- labels are for accessibility purposes -->
+                <label for="uname">Name</label>
+                <input type="text" name="uname" id="uname"> 
+            </div>
+
+            <div class="fieldWrapper">
+                <!-- ids are case-sensitive -->
+                <!-- labels are for accessibility purposes -->
+                <label for="uemail">Email</label>
+                <input type="text" name="uemail" id="uemail"> 
+            </div>
+
+            <div class="fieldWrapper">
+                <!-- ids are case-sensitive -->
+                <!-- labels are for accessibility purposes -->
+                <label for="uphone">Phone</label>
+                <input type="text" name="uphone" id="uphone" placeholder="123-123-1234">
+                
+            </div>
+
+            <div class="fieldWrapper">
+                <label for="tickets">Tickets</label>
+                <select name="tickets" id="tickets">
+                    <option value="">-- SELECT --</option> 
+                    <option value="1">1 Ticket</option> 
+                    <option value="2">2 Ticket</option> 
+                    <option value="3">3 Ticket</option> 
+                    <option value="4">4 Ticket</option> 
+                </select>
+            </div>
+
+            <div class="submitWrapper">
+                <input type="reset" value="clear">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+        <div id="output">
+            output here
+        </div>
+    </main>
+</body>
+</html>

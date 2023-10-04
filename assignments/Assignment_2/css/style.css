@@ -1,0 +1,40 @@
+body {
+    font-family: sans-serif
+}
+
+form, #output {
+    width: 500px;
+    padding: 20px;
+    border: 2px solid black;
+    margin: 30px auto;
+    border-radius: 10px;
+}
+
+/* .fieldWrapper {
+    margin: 10px 0;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+} */
+
+
+.expiryFields {
+    display: grid;
+    grid-template-columns: 3fr 3fr;
+}
+
+.submitWrapper {
+    margin: 10px 0;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 2fr;
+}
+
+label {
+    font-weight: bold;
+}
+
+/* another way of targetting an input field */
+input {
+    border: 1px solid black;
+    border-radius: 5px;
+}

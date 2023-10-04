@@ -1,0 +1,147 @@
+/*  style.css
+    Assignment 1 
+    Revision History:
+        Charm Johannes Relator, 2023.09.12: Created
+        Charm Johannes Relator, 2023.09.19: 
+            Revised to accommodate color contrast issues 
+*/
+
+
+/*color palettes based on: 
+1. hero Image
+2. https://coolors.co/palette/ea698b-d55d92-c05299-ac46a1-973aa8-822faf-6d23b6-6411ad-571089-47126b
+*/
+
+body {
+    width: 1660px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0 auto;
+    box-shadow: 0 0 10px black;
+    padding: 20px;
+    color:#4C457B;
+    font-size: large;
+    background-color: #FBFAFF;
+}
+
+header{
+    text-align: center;
+}
+
+footer{
+    color: white;
+    background-color: #4C457B;
+    text-align: center;
+    padding: 20px;
+}
+
+footer p{  
+    display: inline-block;
+    font-size: 18px;
+}
+
+.conestoga-creds{
+    text-align: center;
+}
+
+.pad-20-all{
+    padding: 20px;
+}
+
+.pad-20-sides{
+    padding: 0px 20px;
+}
+
+.line-spacing{
+    line-height: 24px;
+}
+
+
+/*inside main container formatting */
+img.about{
+    height: 500px;
+    width: 100%;
+    display: inline-block;
+    object-fit: cover;
+}
+
+video {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+.video-align{
+    align-self: center;
+}
+
+nav{
+    text-align: center;
+    background-color: #4C457B;
+}
+
+nav a{
+    display: inline-block;
+    padding: 20px 30px;
+    text-decoration: none;
+    font-size: 24px;
+    color: white;
+}
+
+nav a:hover{
+    background-color: #9667E0;
+
+}
+
+.main-container-grid{
+    display: grid;
+    grid-template-columns: 8fr 2fr;
+}
+
+.profile{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+div.profile > img{
+    height: 350px;
+    box-shadow: 0 0 10px #4C457B;
+}
+
+.box-shadow{
+    box-shadow: 0 0 10px #4C457B;
+}
+
+
+/* Image group formatting */
+figure img{
+    height: 300px;
+    object-fit: contain;
+    box-shadow: 0 0 10px #4C457B;
+}
+
+.image-group-grid{
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+figcaption{
+    font-style: italic;
+    padding: 5px;
+}
+
+section.references {
+    font-style: italic;
+}
+
+/* aside formatting */
+aside {
+    color: #4C457B;
+    background-color: #EBD9FC;
+}
+
+
+
+
+
+
