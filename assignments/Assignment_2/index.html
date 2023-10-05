@@ -12,6 +12,23 @@
     <main>
         <!-- return false prevents the program from going to the next page -->
         <!-- return false are client-side forms, usually for client-side processes -->
+        <div class="product">
+            <!-- ids are case-sensitive -->
+            <!-- labels are for accessibility purposes -->
+            <img src="assets/images/ffxiv_cookbook.JPG" alt="The Ulitmate Final Fanstasy XIV Cookbook by Victoria Rosenthal">
+            <div class="productInfo">
+                <h3 class="productTitle">The Ulitmate Final Fanstasy XIV Cookbook</h3>
+                <p class="productsubtitle">by Victoria Rosenthal</p>
+                <h3 class="price">$35.00</h3>
+                <div class="qtySelect">
+                    <!-- deconsttruct  -->
+                    <button class="addBtn" onclick="decrementBookQty()"> - </button>
+                        <input type="number" name="cookbook" id="cookbook" max="999">
+                    <button class="addBtn" id=""""> + </button>
+                </div>
+            </div>
+        </div>
+
         <form onsubmit="return formHandler()"  action="process.html" method="post">
             <div class="fieldWrapper">
                 <!-- ids are case-sensitive -->
@@ -69,6 +86,7 @@ let phoneRegex = /^\d{3}\-\d{3}\-\d{4}$/; -->
             </div>
 
             <!-- provinces dropdown  -->
+            <!-- source : https://www12.statcan.gc.ca/census-recensement/2021/ref/dict/tab/index-eng.cfm?ID=t1_8 -->
             <div class="fieldWrapper"> 
                 <label for="uprovinces">Province</label>
                 <br>
@@ -117,7 +135,7 @@ let phoneRegex = /^\d{3}\-\d{3}\-\d{4}$/; -->
                         <div class="fieldWrapper">
                             <label for="expiryMonth">Year:</label>
                             <br>
-                            <input type="text" name="ucreditCard" id="ucreditCard" placeholder="2010" maxlength="4">
+                            <input type="number" name="ucreditCard" id="ucreditCard" placeholder="2010" max="2900">
                         </div>
                     </div>
                     

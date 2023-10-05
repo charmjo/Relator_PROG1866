@@ -12,6 +12,22 @@
     <main>
         <!-- return false prevents the program from going to the next page -->
         <!-- return false are client-side forms, usually for client-side processes -->
+        <div class="product">
+            <!-- ids are case-sensitive -->
+            <!-- labels are for accessibility purposes -->
+            <label for="uname">Name</label>
+            <br>
+            <input type="text" name="uname" id="uname" placeholder="John Doe"> 
+            <div class="productInfo">
+                <h3 class="productTitle">The Ulitmate Final Fanstasy XIV Cookbook</h3>
+                <p class="productsubtitle">by Victoria Rosenthal</p>
+                <h3 class="price">$35.00</h3>
+                <div class="qtySelect">
+                    
+                </div>
+            </div>
+        </div>
+
         <form onsubmit="return formHandler()"  action="process.html" method="post">
             <div class="fieldWrapper">
                 <!-- ids are case-sensitive -->

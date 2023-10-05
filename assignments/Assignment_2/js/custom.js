@@ -1,3 +1,10 @@
+// eventlisteners
+
+
+function decrementBookQty () {
+
+}
+
 function formHandler() {
     // return true if there is no error on validation
     // return false  if there is error on validation
