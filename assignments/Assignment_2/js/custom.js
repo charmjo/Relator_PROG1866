@@ -26,7 +26,7 @@ function formHandler() {
 
     // no need to put string tags in JS regex
     // I manage to shorten it from /^[0-9]{3}[\-][0-9]{3}[\-][0-9]{4}$/
-    
+    let phoneRegex = /^\d{3}\-\d{3}\-\d{4}$/
 
     if(!phoneRegex.test(uphone)) {
         errors += '<br> Phone number is not in the correct format';

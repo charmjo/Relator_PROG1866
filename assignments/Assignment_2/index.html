@@ -12,23 +12,50 @@
     <main>
         <!-- return false prevents the program from going to the next page -->
         <!-- return false are client-side forms, usually for client-side processes -->
-        <div class="product">
-            <!-- ids are case-sensitive -->
-            <!-- labels are for accessibility purposes -->
-            <img src="assets/images/ffxiv_cookbook.JPG" alt="The Ulitmate Final Fanstasy XIV Cookbook by Victoria Rosenthal">
-            <div class="productInfo">
-                <h3 class="productTitle">The Ulitmate Final Fanstasy XIV Cookbook</h3>
-                <p class="productsubtitle">by Victoria Rosenthal</p>
-                <h3 class="price">$35.00</h3>
-                <div class="qtySelect">
-                    <!-- deconsttruct  -->
-                    <button class="addBtn" onclick="decrementBookQty()"> - </button>
-                        <input type="number" name="cookbook" id="cookbook" max="999">
-                    <button class="addBtn" id=""""> + </button>
-                </div>
-            </div>
-        </div>
+        <section id="productList">
+            <ul>
+                <li>
+                    <article class="productLayout">
+                        <img src="assets/images/ffxiv_cookbook.JPG" alt="The Ulitmate Final Fanstasy XIV Cookbook by Victoria Rosenthal">
+                        <div class="productInfo">
+                            <h3 class="productTitle">The Ulitmate Final Fanstasy XIV Cookbook</h3>
+                            <p class="productsubtitle">by Victoria Rosenthal</p>
+                            <h3 class="price">$35.00</h3>
+                            <div class="qtySelect">
+                                <!-- deconsttruct  -->
+                                <button class="addBtn" onclick="decrementBookQty()"> - </button>
+                                    <input type="number" name="cookbook" id="cookbook" max="999">
+                                <button class="addBtn" id=""""> + </button>
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                
+                <li>
+                    <article class="productLayout">
+                        <!-- ids are case-sensitive -->
+                        <!-- labels are for accessibility purposes -->
+                        <img src="assets/images/saad_book.JPG" alt="Systems Analysis and Design in a Changing World">
+                        <div class="productInfo">
+                            <h3 class="productTitle">Systems Analysis and Design in a Changing World</h3>
+                            <p class="productsubtitle">by John Satzinger</p>
+                            <h3 class="price">$35.00</h3>
+                            <div class="qtySelect">
+                                <!-- deconsttruct  -->
+                                <button class="addBtn" onclick="decrementBookQty()"> - </button>
+                                    <input type="number" name="cookbook" id="cookbook" max="999">
+                                <button class="addBtn" id=""""> + </button>
+                            </div>
+                        </div>
+                    </article>
+                </li>              
+            </ul> 
+            <br>
+            <button id="checkout"> Checkout</button>
+        </section>
 
+        
+        
         <form onsubmit="return formHandler()"  action="process.html" method="post">
             <div class="fieldWrapper">
                 <!-- ids are case-sensitive -->

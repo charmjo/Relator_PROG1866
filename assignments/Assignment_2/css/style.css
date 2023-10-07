@@ -1,5 +1,6 @@
 body {
-    font-family: sans-serif
+    font-family: sans-serif;
+    margin: 0 auto;
 }
 
 
@@ -14,6 +15,22 @@ form, #output {
     margin: 30px auto;
     border-radius: 10px;
 }
+
+section {
+    display: block;
+    align-self: center;
+}
+
+section#productList > ul {
+    display: grid;
+    grid-template-columns: 3fr 3fr;
+    list-style-type: none;
+}
+
+button#checkout{
+    align-self: center;
+}
+
 
 /* .fieldWrapper {
     margin: 10px 0;
@@ -30,8 +47,15 @@ form, #output {
 .submitWrapper {
     margin: 10px 0;
     display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.productLayout {
+    align-self: center;
+    display: grid;
     gap: 10px;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 3fr;
+    justify-content: left;
 }
 
 label {
