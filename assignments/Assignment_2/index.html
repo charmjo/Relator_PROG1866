@@ -4,31 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/custom.js"></script>
-
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/custom.js"></script>
 </head>
 <body>
+    <header>
+        <img src="assets/images/HatchfulExport-All/logo.png" alt="logo">
+    </header>
     <main>
         <!-- return false prevents the program from going to the next page -->
         <!-- return false are client-side forms, usually for client-side processes -->
         <section id="productList">
+            <h1>Product List</h1>
             <ul>
                 <li>
                     <article class="productLayout">
-                        <img src="assets/images/ffxiv_cookbook.JPG" alt="The Ulitmate Final Fanstasy XIV Cookbook by Victoria Rosenthal">
+                        <img src="assets/images/ffxiv_cookbook.JPG" alt="The Ultimate Final Fanstasy XIV Cookbook by Victoria Rosenthal">
                         <div class="productInfo">
-                            <h3 class="productTitle">The Ulitmate Final Fanstasy XIV Cookbook</h3>
+                            <h3 class="productTitle">The Ultimate Final Fanstasy XIV Cookbook</h3>
                             <p class="productsubtitle">by Victoria Rosenthal</p>
-                            <h3 class="price">$35.00</h3>
+                            <h3 class="price">$2.00</h3>
                             <div class="qtySelect">
                                 <!-- deconsttruct  -->
-                                <button class="addBtn" onclick="decrementBookQty()"> - </button>
-                                    <input type="number" name="cookbook" id="cookbook" max="999">
-                                <button class="addBtn" id=""""> + </button>
+                                <button class="addBtn" onclick="countBookQty(-1,'cookbook')" value="-"> - </button>
+                                    <input class="qtyField" type="number" name="cookbook" id="cookbook" min="0" max="999" value="0">
+                                <button class="addBtn" onclick="countBookQty(1,'cookbook')" value="+"> + </button>
                             </div>
+                            <h4> Total: $
+                                <span id="totalCookbook">0.00</span>
+                            </h4>
+                            <!-- charm, please change this to another color for the love of god -->
+                            <button class="updatePrice" onclick="updatePrice('cookbook')"> Update Total Price</button>
                         </div>
-                    </article>
+                     </article>
                 </li>
                 
                 <li>
@@ -39,24 +47,23 @@
                         <div class="productInfo">
                             <h3 class="productTitle">Systems Analysis and Design in a Changing World</h3>
                             <p class="productsubtitle">by John Satzinger</p>
-                            <h3 class="price">$35.00</h3>
+                            <h3 class="price">$3.00</h3>
                             <div class="qtySelect">
                                 <!-- deconsttruct  -->
-                                <button class="addBtn" onclick="decrementBookQty()"> - </button>
-                                    <input type="number" name="cookbook" id="cookbook" max="999">
-                                <button class="addBtn" id=""""> + </button>
+                                <button class="addBtn" onclick="countBookQty(-1,'saadbook')" value="-"> - </button>
+                                    <input class="qtyField" type="number" name="saadbook" id="saadbook" min="0" max="999" value="0">
+                                <button class="addBtn" onclick="countBookQty(1,'saadbook')" value="+"> + </button>
                             </div>
                         </div>
                     </article>
-                </li>              
+                </li>
             </ul> 
-            <br>
-            <button id="checkout"> Checkout</button>
+            <div>
+                <button id="checkout" onclick="checkoutItems()"> Checkout</button>
+            </div>
         </section>
 
-        
-        
-        <form onsubmit="return formHandler()"  action="process.html" method="post">
+        <form id="checkoutForm" class="hidden" onsubmit="return formHandler()"  action="process.html" method="post">
             <div class="fieldWrapper">
                 <!-- ids are case-sensitive -->
                 <!-- labels are for accessibility purposes -->
@@ -99,7 +106,7 @@
 let phoneRegex = /^\d{3}\-\d{3}\-\d{4}$/; -->
                 <label for="uaddress">Address</label>
                 <br>
-                <input type="text" name="uphone" id="uphone">
+                <input type="text" name="uaddress" id="uaddress">
                 
             </div>
 
@@ -117,7 +124,7 @@ let phoneRegex = /^\d{3}\-\d{3}\-\d{4}$/; -->
             <div class="fieldWrapper"> 
                 <label for="uprovinces">Province</label>
                 <br>
-                <select name="uprovinces" id="tickets">
+                <select name="uprovinces" id="uprovinces">
                     <option value="">-- SELECT PROVINCE --</option> 
                     <option value="AB">Alberta</option> 
                     <option value="BC">British Columbia</option> 
@@ -125,7 +132,7 @@ let phoneRegex = /^\d{3}\-\d{3}\-\d{4}$/; -->
                     <option value="NT">Northwest Territories</option> 
                     <option value="NU">Nunavut</option> 
                     <option value="QC">Quebec</option> 
-                    <option value="SK">Sasketchewan</option> 
+                    <option value="SK">Saskatchewan</option> 
                     <option value="YT">Yukon</option> 
                     <option value="ON">Ontario</option> 
                     <option value="NB">New Brunswick</option>
@@ -155,21 +162,17 @@ let phoneRegex = /^\d{3}\-\d{3}\-\d{4}$/; -->
                     <!-- I will need to use dropdown for month-->
                     <div class="expiryFields">
                         <div class="fieldWrapper">
-                            <label for="expiryMonth">Month:</label>
+                            <label for="ucreditCardMonth">Month:</label>
                             <br>
-                            <input type="text" name="ucreditCardMonth" id="ucreditCard" placeholder="JAN">
+                            <input type="text" name="ucreditCardMonth" id="ucreditCardMonth" placeholder="JAN" minlength="3" maxlength="3">
                         </div>
                         <div class="fieldWrapper">
-                            <label for="expiryMonth">Year:</label>
+                            <label for="ucreditCardYear">Year:</label>
                             <br>
-                            <input type="number" name="ucreditCard" id="ucreditCard" placeholder="2010" max="2900">
+                            <input type="number" name="ucreditCardYear" id="ucreditCardYear" placeholder="2010" max="2900">
                         </div>
-                    </div>
-                    
+                    </div>                
                 </div>
-                
-        
-
             </div>
 
             <div class="submitWrapper">
