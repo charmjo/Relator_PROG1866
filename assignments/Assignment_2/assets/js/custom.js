@@ -1,3 +1,15 @@
+/*
+To finish before sleeping:
+- output
+- less than 10 error trapping
+
+to finish tomorrow:
+ - error messages
+ - video
+ - css
+
+*/
+
 //constant dictionaries
 const PROVINCES = [
     {abbr: "AB", name: "Alberta"},
@@ -20,17 +32,50 @@ const ERROR_MESSAGES = [
 ]
 
 // eventlisteners
+var cookbookField = document.getElementById("cookbook");
+var saadbookField = document.getElementById("saadbook");
 
-// methods
-// function updatePrice(id) {
-//     let sourceField = document.getElementById('')
-// }
+cookbookField.addEventListener("change", updateCookbookPrice);
+saadbookField.addEventListener("change", updateSaadbookPrice);
+
+function updateCookbookPrice (event) {
+    updatePrice("cookbook",event.target.value);
+}
+
+function updateSaadbookPrice (event) {
+
+    if(!validateDataFormat("number",event.target.value)) {
+        //TO DO: put error message here
+        return;
+    }
+    updatePrice("saadbook",event.target.value);
+}
+
+// general-purpos functions
+function updatePrice(id, qty) {
+    let price = 0;
+    let getId;
+
+    getId = id.charAt(0).toUpperCase()+id.slice(1);
+    let totalField = document.getElementById(`total${getId}`);
+
+  //  let qtyValue = document.getElementById(id).value;
+    qty = parseFloat(qty);
+
+    if (id=="cookbook"){
+        price = 2.00;
+    } else if (id == "saadbook") {
+        price = 3.00;
+    }
+
+    totalField.textContent = (price * qty).toFixed(2); 
+}
 
 
 function countBookQty (value,id) {
     const min = 1;
     const max = 998;
-    var qtyValue = document.getElementById(id).value;
+    let qtyValue = document.getElementById(id).value;
 
     if(!validateDataFormat("number", qtyValue)) {
         // add color here
@@ -47,6 +92,8 @@ function countBookQty (value,id) {
 
     qtyValue = qtyValue + value;
     document.getElementById(id).value = qtyValue;
+
+    updatePrice(id,qtyValue);
 }
 
 function checkoutItems () {
@@ -73,22 +120,6 @@ function formHandler() {
 
     }
 
-    //step 4=  show output
-    // string literals can be multilined.
-    // if(errors != '') {
-    //     document.getElementById('output').innerHTML = errors;
-    // } else {
-    //     let output = '';
-
-    //     output = `
-    //         Name: ${uname} <br>
-    //         Phone: ${uphone} <br>
-    //         Tickets: ${tickets} <br>
-            
-    //     `;
-    //     document.getElementById('output').innerHTML = output;
-    // }
-
     return false;
 }
 
@@ -110,8 +141,8 @@ function setUserData () {
 
 function setProductData () {
     let productDetails = [
-        {productName: "The Ultimate Final Fanstasy XIV Cookbook", productQty: 0, totalBasePrice: 2.00},
-        {productName: "Systems Analysis and Design in a Changing World", productQty: 0, totalBasePrice: 3.00},
+        {productName: "The Ultimate Final Fanstasy XIV Cookbook", productQty: 0, unitPrice: 2.00, totalPrice: 0.00},
+        {productName: "Systems Analysis and Design in a Changing World", productQty: 0, unitPrice: 3.00, totalPrice: 0.00},
     ];
 }
 
@@ -182,7 +213,7 @@ function calcTax (province, subtotal) {
     let taxDetail = {};
     let salesTax = 0;
 
-    // I chose to follow retailcouncil.org's website since canada's government website only listed  GST and HST while some provinces have their own tax rules i.e Quebec
+    // I chose to follow retailcouncil.org's website since canada's federal government website only listed  GST and HST while some provinces have their own tax rules i.e Quebec. Fedex website also uses the same percentage.
     // source for tax table: https://www.retailcouncil.org/resources/quick-facts/sales-tax-rates-by-province/
     const PROVINCE_15 = ['NB','NL','NS','PE'];
     const PROVINCE_5 = ['AB','NT','NU','YT'];
@@ -211,4 +242,8 @@ function calcTax (province, subtotal) {
     taxDetail.salesTax = salesTax;
     
     return taxDetail;
+}
+
+function displayReceipt(){
+
 }
