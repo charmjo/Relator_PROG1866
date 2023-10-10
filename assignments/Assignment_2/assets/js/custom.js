@@ -147,7 +147,6 @@ function formHandler() {
         } else {
             formDetails.subtotal = subtotal;
             formDetails.grandTotal = grandTotal;
-            console.log(grandTotal,subtotal,taxDetail.salesTax);
             displayReceipt(formDetails,productDetails,taxDetail);
         }
         
