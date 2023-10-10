@@ -1,15 +1,3 @@
-/*
-To finish before sleeping:
-- output
-- less than 10 error trapping
-
-to finish tomorrow:
- - error messages
- - video
- - css
-
-*/
-
 //constant dictionaries
 const PROVINCES = [
     {abbr: "AB", name: "Alberta"},
