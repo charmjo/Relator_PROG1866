@@ -142,7 +142,8 @@ function formHandler() {
         errorList.blank.forEach(item => {
             let field = document.getElementById(`u${item}`);
             let message = document.getElementById(`${item}Error`);
-            // I do not know why the border will not work for this
+
+            // the border works I forgot to remove the comment in the video
             field.classList.add("errorBorder");
             message.textContent = `Please fill up ${item}`;
         });
@@ -151,7 +152,7 @@ function formHandler() {
             let field = document.getElementById(`u${item}`);
             let message = document.getElementById(`${item}Error`);
 
-            // I do not know why the border will not work for this
+            // the border works I forgot to remove the comment in the video
             if (!field.classList.contains("errorBorder")){
                 field.classList.add("errorBorder");
             }

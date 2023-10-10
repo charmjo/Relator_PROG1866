@@ -27,6 +27,10 @@ header > img{
     padding: 5px 0px 5px 0px;
 }
 
+button.addBtn:hover{
+    background-color: #64646C!important;
+}  
+
 section#productList > div, div.creditCardSection > h2{
     text-align: center;
 }
@@ -108,9 +112,7 @@ h3, h4 {
     font-family: 'Roboto', sans-serif;
 }
 
-button.addBtn:hover{
-    background-color: #64646C!important;
-}
+
 
 div.labels > span {
     text-align: right;
