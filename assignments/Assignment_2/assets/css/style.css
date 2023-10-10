@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Roboto&display=swap');
+
 body {
-    font-family: sans-serif;
-    font-size: 16px;
+    font-family: 'Cormorant Garamond',sans-serif;
+    font-size: 20px;
     margin: 0 auto;
+
 }
 
 main {
@@ -12,25 +15,48 @@ img  {
     height:300px;
 }
 
+header {
+    background-color: #343C44;
+    height: 110px;
+    text-align: center;
+}
 header > img{
-    height: 150px;
+    height: 100px;
     display: inline-block;
+    padding: 5px 0px 5px 0px;
 }
 
-section#productList > div {
+section#productList > div, div.creditCardSection > h2{
     text-align: center;
 }
 
 button#checkout {
     font-size: 24px;
+    color:#343C44;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 2px solid #343C44;
+    background: white;
 }
 
-form, #output {
-    width: 500px;
-    padding: 20px;
-    border: 2px solid black;
-    margin: 30px auto;
-    border-radius: 10px;
+button#checkout:hover {
+    background: #343C44;
+    color: white;
+}
+
+div.submitWrapper > input {
+    border: 2px solid white;
+    color: white;
+    background-color: #343C44;
+    padding: 10px 20px;
+    align-self: center;
+}
+div.submitWrapper > input:hover {
+    border: 2px solid #343C44;
+    color: #343C44;
+    background-color: white;
+    padding: 10px 20px;
+    align-self: center;
 }
 
 section {
@@ -45,14 +71,24 @@ section#productList > ul {
     gap: 10px;
 }
 
+select {
+    font-size: 32px;
+}
+/* 
 label {
     font-weight: bold;
+} */
+
+form {
+    color: white;
+    align-self: center;
 }
 
 /* another way of targetting an input field */
 input {
     border: 1px solid black;
     border-radius: 5px;
+    font-size: 32px;
 }
 
 /* .fieldWrapper {
@@ -60,6 +96,49 @@ input {
     display: grid;
     grid-template-columns: 1fr 2fr;
 } */
+
+h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    text-align: center;
+}
+
+h3, h4 {
+    font-family: 'Roboto', sans-serif;
+}
+
+button.addBtn:hover{
+    background-color: #64646C!important;
+}
+
+div.labels > span {
+    text-align: right;
+    color: red;
+}
+
+div.fieldWrapper > input {
+    width: 100%;
+}
+
+footer{
+    background-color: #343C44;
+    text-align: center;
+    padding: 20px;
+}
+
+footer p{  
+    display: inline-block;
+    color: white;
+}
+
+ul {
+    padding: 20px;
+    background-color: #EAEBEB;
+}
+
+#receiptDisplay {
+    white-space: pre;
+}
 
 .hidden {
     display: none;
@@ -79,10 +158,7 @@ input {
 }
 
 .submitWrapper {
-    margin: 10px 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-content: ends;
+    text-align: center;
 }
 
 .productLayout {
@@ -96,3 +172,58 @@ input {
     justify-content: left;
 }
 
+.errorBorder {
+    border: 2px solid red;
+}
+
+.formStyles {
+    background-color: #343C44;
+    padding: 20px;
+}
+
+.pad-20-all{
+    padding: 20px;
+}
+
+.pad-20-sides{
+    padding: 0px 20px;
+}
+
+.line-spacing{
+    line-height: 24px;
+}
+
+.addBtn{
+    width: 30px;
+    font-size: 24px;
+    text-align: center;
+    color: white;
+    background-color: #343C44;
+    border: 0;
+
+}
+
+.fieldWrapper{
+    padding: 10px;
+}
+
+.labels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 5px 0;
+    justify-content: ends;
+}
+
+.formWrapper {
+    width: 600px;
+    margin: auto;
+}
+
+.output {
+    text-align: center;
+}
+
+.errorText {
+    color: red;
+    text-align: center;
+}

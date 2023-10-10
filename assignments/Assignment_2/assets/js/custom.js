@@ -27,9 +27,6 @@ const PROVINCES = [
     {abbr: "PE", name: "Prince Edward Island"},
 ];
 
-const ERROR_MESSAGES = [
-
-]
 
 // eventlisteners
 var cookbookField = document.getElementById("cookbook");
@@ -39,19 +36,26 @@ cookbookField.addEventListener("change", updateCookbookPrice);
 saadbookField.addEventListener("change", updateSaadbookPrice);
 
 function updateCookbookPrice (event) {
+    cookbookField.classList.remove("errorBorder");
+    if(!validateDataFormat("number",event.target.value)) {
+        cookbookField.classList.add("errorBorder");
+        //WILL need to make the some error trapping stuff here 
+        return;
+    }
     updatePrice("cookbook",event.target.value);
 }
 
 function updateSaadbookPrice (event) {
-
+    saadbookField.classList.remove("errorBorder");
     if(!validateDataFormat("number",event.target.value)) {
-        //TO DO: put error message here
+        saadbookField.classList.add("errorBorder");
+        //WILL need to make the some error trapping stuff here 
         return;
     }
     updatePrice("saadbook",event.target.value);
 }
 
-// general-purpos functions
+// general-purpose functions
 function updatePrice(id, qty) {
     let price = 0;
     let getId;
@@ -59,7 +63,6 @@ function updatePrice(id, qty) {
     getId = id.charAt(0).toUpperCase()+id.slice(1);
     let totalField = document.getElementById(`total${getId}`);
 
-  //  let qtyValue = document.getElementById(id).value;
     qty = parseFloat(qty);
 
     if (id=="cookbook"){
@@ -78,7 +81,7 @@ function countBookQty (value,id) {
     let qtyValue = document.getElementById(id).value;
 
     if(!validateDataFormat("number", qtyValue)) {
-        // add color here
+        // TO DO: ERROR message, add color here
         return;
     }
 
@@ -101,6 +104,7 @@ function checkoutItems () {
     form.classList.remove("hidden");
 }
 
+// form functions
 function formHandler() {
     let formDetails = {} ;
     let errorList = {} ;
@@ -111,13 +115,61 @@ function formHandler() {
 
     //step 2 = validate data
     errorList = validateDataLogic(formDetails);
-    console.log(errorList);
+    if (!productDetails) {
+        // as much as I would like to do modals but I lack the time to implement and test it.
+        alert("Your product quantity has an incorrect format. Please enter a valid format. Thank you.");
+    }
+
+    // clean up error messages
+    for (let key in formDetails) {
+        let field = document.getElementById(`u${key}`);
+        let message = document.getElementById(`${key}Error`);
+
+        field.classList.remove("errorBorder");
+        message.textContent = ``;
+    }
 
     //step 3 = process data
     if(errorList.blank.length === 0 && errorList.format.length === 0) {
+        let subtotal = calcSubtotal(productDetails);
+        let taxDetail = calcTax(formDetails.provinces,subtotal);
+        let grandTotal = subtotal + taxDetail.salesTax;
 
+        // I will go with gross purchase (without the tax) when it comes to showing the receipt
+        if (subtotal < 10){
+            let receiptDisplay = document.getElementById("receiptDisplay");
+            let output = document.getElementById("output");
+            
+            output.classList.remove("hidden");
+            output.classList.add("errorText");
+            receiptDisplay.textContent = " Sorry, you must have a minimum purchase of $10.00. Thank you.";
+
+        } else {
+            formDetails.subtotal = subtotal;
+            formDetails.grandTotal = grandTotal;
+            console.log(grandTotal,subtotal,taxDetail.salesTax);
+            displayReceipt(formDetails,productDetails,taxDetail);
+        }
+        
     } else { // show the error
+        errorList.blank.forEach(item => {
+            let field = document.getElementById(`u${item}`);
+            let message = document.getElementById(`${item}Error`);
+            // I do not know why the border will not work for this
+            field.classList.add("errorBorder");
+            message.textContent = `Please fill up ${item}`;
+        });
 
+        errorList.format.forEach(item => {
+            let field = document.getElementById(`u${item}`);
+            let message = document.getElementById(`${item}Error`);
+
+            // I do not know why the border will not work for this
+            if (!field.classList.contains("errorBorder")){
+                field.classList.add("errorBorder");
+            }
+            message.textContent = `Please enter the correct format`;
+        });
     }
 
     return false;
@@ -131,10 +183,12 @@ function setUserData () {
     formDetails.postCode = document.getElementById('upostCode').value;
     formDetails.address = document.getElementById('uaddress').value;
     formDetails.city = document.getElementById('ucity').value;
-    formDetails.province = document.getElementById('uprovinces').value;
+    formDetails.provinces = document.getElementById('uprovinces').value;
     formDetails.creditCardNum = document.getElementById('ucreditCardNum').value;
-    formDetails.creditExpiryYear = document.getElementById('ucreditCardYear').value;
-    formDetails.creditExpiryMonth = document.getElementById('ucreditCardMonth').value;
+    formDetails.creditExpiryYear = document.getElementById('ucreditExpiryYear').value;
+    formDetails.creditExpiryMonth = document.getElementById('ucreditExpiryMonth').value;
+    formDetails.password = document.getElementById('upassword').value;
+    formDetails.confirmPassword = document.getElementById('uconfirmPassword').value;
 
     return formDetails;
 }
@@ -144,6 +198,24 @@ function setProductData () {
         {productName: "The Ultimate Final Fanstasy XIV Cookbook", productQty: 0, unitPrice: 2.00, totalPrice: 0.00},
         {productName: "Systems Analysis and Design in a Changing World", productQty: 0, unitPrice: 3.00, totalPrice: 0.00},
     ];
+
+    let cookbookQtyValue = document.getElementById("cookbook").value;
+    let saadbookQtyValue = document.getElementById("saadbook").value;
+
+    if (!validateDataFormat("number",cookbookQtyValue) || !validateDataFormat("number",saadbookQtyValue)) {
+        //TO DO: add error message here
+        return false;
+    }
+
+    cookbookQtyValue = parseFloat(cookbookQtyValue);
+    saadbookQtyValue = parseFloat(saadbookQtyValue);
+
+    productDetails[0].productQty = cookbookQtyValue;
+    productDetails[0].totalPrice = productDetails[0].unitPrice * cookbookQtyValue;
+    productDetails[1].productQty = saadbookQtyValue;
+    productDetails[1].totalPrice = productDetails[1].unitPrice * saadbookQtyValue;
+
+    return productDetails;  
 }
 
 function validateDataLogic (data) {
@@ -157,9 +229,21 @@ function validateDataLogic (data) {
     }
 
     for (let key in data) {
-        if (!validateDataFormat(key,data[key])) {
+        let validation = false;
+
+        // password and confirm password are kinda different coz they are both user input.
+        if (key == "password" ) {
+            validation = validateDataFormat(key, data["password"], data["confirmPassword"]);
+        } else if (key == "confirmPassword") {
+            validation = validateDataFormat(key, data["password"], data["confirmPassword"]);
+        } else {
+            validation = validateDataFormat(key,data[key])     
+        }
+
+        if (!validation) {
             errors.format.push(key);
         }
+        
     }
     return errors;
 }
@@ -195,7 +279,7 @@ function validateDataFormat (key, data, password="") {
         regex= /^(\w{3,}(\.)?)+@([a-z0-9]+\.)+[a-z0-9]+$/i;
         if (!data.match(regex)) return false;          
     } 
-    else if (key == "password") {
+    else if (key == "password" || key == "confirmPassword") {
         regex = password;
         if (!data.match(regex)) return false;
     }
@@ -244,6 +328,38 @@ function calcTax (province, subtotal) {
     return taxDetail;
 }
 
-function displayReceipt(){
+function calcSubtotal (productList) {
+    let subtotal = 0.0;
 
+    for (const item of productList) {
+        subtotal += item["totalPrice"];
+    }
+    return subtotal;
+}
+
+function displayReceipt(formDetails, productDetails, taxDetail){
+    // NOTE 1: I AM NOT showing passwords since showing them are risky
+    // NOTE 2: I will show credit card details (knowing they will not be showed in real life for completion purposes.)
+    let receipt = '';
+    let newline = '\r\n';
+    let receiptDisplay = document.getElementById("receiptDisplay");
+    let output = document.getElementById("output");
+    output.classList.remove("hidden", "errorText");
+
+    receipt = `Name: ${formDetails.name} ${newline}Address: ${formDetails.address} ,${formDetails.city}, ${formDetails.provinces}, ${formDetails.postCode} \r\n`;
+    receipt += `Phone: ${formDetails.phone} ${newline}Email: ${formDetails.email} \r\n`;
+    receipt += `Credit Card Number: ${formDetails.creditCardNum} \t\tExpiry Month: ${formDetails.creditExpiryMonth} \t\tExpiry Year: ${formDetails.creditExpiryYear}\r\n`;
+    receipt += `========================================================================================= \r\n`;
+    receipt += `Product List \r\n`;
+    
+    for (const product of productDetails) {
+        receipt += `${product["productName"]}\t - \tUnit Price: ${product["unitPrice"].toFixed(2)}\t - \tQty: ${product["productQty"]}\t - \tTotal Price: ${product["totalPrice"].toFixed(2)} \r\n`;
+    }
+
+    receipt += `========================================================================================= \r\n`;
+    receipt += `Subtotal: ${formDetails.subtotal} \r\n`;
+    receipt += `Sales Tax (${taxDetail.taxRate * 100}%): ${taxDetail.salesTax.toFixed(2)} \r\n`;
+    receipt += `Grand Total: ${formDetails.grandTotal.toFixed(2)} \r\n`;
+
+    receiptDisplay.textContent = receipt;
 }

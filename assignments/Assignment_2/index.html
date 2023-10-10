@@ -13,13 +13,13 @@
     <main>
         <!-- return false prevents the program from going to the next page -->
         <!-- return false are client-side forms, usually for client-side processes -->
-        <section id="productList">
+        <section id="productList" class="pad-20-all">
             <h1>Product List</h1>
             <ul>
                 <li>
-                    <article class="productLayout">
+                    <article class="productLayout pad-20-all">
                         <img src="assets/images/ffxiv_cookbook.JPG" alt="The Ultimate Final Fanstasy XIV Cookbook by Victoria Rosenthal">
-                        <div class="productInfo">
+                        <div class="productInfo pad-20-sides">
                             <h3 class="productTitle">The Ultimate Final Fanstasy XIV Cookbook</h3>
                             <p class="productsubtitle">by Victoria Rosenthal</p>
                             <h3 class="price">$2.00</h3>
@@ -35,13 +35,13 @@
                         </div>
                      </article>
                 </li>
-                
+    
                 <li>
-                    <article class="productLayout">
+                    <article class="productLayout pad-20-all">
                         <!-- ids are case-sensitive -->
                         <!-- labels are for accessibility purposes -->
                         <img src="assets/images/saad_book.JPG" alt="Systems Analysis and Design in a Changing World">
-                        <div class="productInfo">
+                        <div class="productInfo pad-20-sides">
                             <h3 class="productTitle">Systems Analysis and Design in a Changing World</h3>
                             <p class="productsubtitle">by John Satzinger</p>
                             <h3 class="price">$3.00</h3>
@@ -59,133 +59,149 @@
                     </article>
                 </li>
             </ul> 
-            <div>
+            <div class="checkoutButton pad-20-all">
                 <button id="checkout" onclick="checkoutItems()"> Checkout</button>
             </div>
         </section>
 
-        <form id="checkoutForm" class="hidden" onsubmit="return formHandler()"  action="process.html" method="post">
-            <div class="fieldWrapper">
-                <!-- ids are case-sensitive -->
-                <!-- labels are for accessibility purposes -->
-                <label for="uname">Name</label>
-                <br>
-                <input type="text" name="uname" id="uname" placeholder="John Doe"> 
-            </div>
+        <form id="checkoutForm" class="hidden formStyles" onsubmit="return formHandler()"  action="process.html" method="post">
+            <div class="formWrapper pad-20-all">
+                <h1>Checkout Form</h1>
+                <div class="fieldWrapper"> 
+                    <div class="labels">
+                        <label for="uname">Name</label>
+                        <span id="nameError"></span>
+                    </div>    
+                    <input type="text" name="uname" id="uname" placeholder="John Doe"> 
+                </div>
 
-            <div class="fieldWrapper">
-                <!-- ids are case-sensitive -->
-                <!-- labels are for accessibility purposes -->
-                <label for="uemail">Email</label>
-                <br>
-                <input type="text" name="uemail" id="uemail" placeholder="johndoe@test.com"> 
-            </div>
-
-            
-            <div class="fieldWrapper">
-                <!-- ids are case-sensitive -->
-                <!-- labels are for accessibility purposes -->
-                <label for="uphone">Phone</label>
-                <br>
-                <input type="text" name="uphone" id="uphone" placeholder="123-123-1234"> 
-            </div>
-    
-
-            <div class="fieldWrapper">
-                <!-- ids are case-sensitive -->
-                <!-- labels are for accessibility purposes -->
-                <label for="upostCode">Post Code</label>
-                <br>
-                <input type="text" name="upostCode" id="upostCode" placeholder="A1B2C3"> 
-            </div>
-
-            
-            <div class="fieldWrapper">
-                <!-- ids are case-sensitive -->
-                <!-- labels are for accessibility purposes -->
-                <!-- 
-let phoneRegex = /^\d{3}\-\d{3}\-\d{4}$/; -->
-                <label for="uaddress">Address</label>
-                <br>
-                <input type="text" name="uaddress" id="uaddress">
-                
-            </div>
-
-            <div class="fieldWrapper">
-                <!-- ids are case-sensitive -->
-                <!-- labels are for accessibility purposes -->
-                <label for="ucity">City</label>
-                <br>
-                <input type="text" name="ucity" id="ucity" placeholder="Waterloo">
-                
-            </div>
-
-            <!-- provinces dropdown  -->
-            <!-- source : https://www12.statcan.gc.ca/census-recensement/2021/ref/dict/tab/index-eng.cfm?ID=t1_8 -->
-            <div class="fieldWrapper"> 
-                <label for="uprovinces">Province</label>
-                <br>
-                <select name="uprovinces" id="uprovinces">
-                    <option value="">-- SELECT PROVINCE --</option> 
-                    <option value="AB">Alberta</option> 
-                    <option value="BC">British Columbia</option> 
-                    <option value="MB">Manitoba</option> 
-                    <option value="NT">Northwest Territories</option> 
-                    <option value="NU">Nunavut</option> 
-                    <option value="QC">Quebec</option> 
-                    <option value="SK">Saskatchewan</option> 
-                    <option value="YT">Yukon</option> 
-                    <option value="ON">Ontario</option> 
-                    <option value="NB">New Brunswick</option>
-                    <option value="NL">Newfoundland and Labrador</option> 
-                    <option value="NS">Nova Scotia</option> 
-                    <option value="PE">Prince Edward Island</option>
-                </select>
-            </div>
-
-            
-<!-- 
-            <div class="fieldWrapper">
-                <input type="text" name="ucreditCardMonth" id="ucreditCard" placeholder="JAN">
-            </div> -->
-            <div class="creditCardSection">
                 <div class="fieldWrapper">
-                    <label for="ucreditCard">Credit Card Number</label>
-                    <br>
-                    <input type="text" name="ucreditCardNum" id="ucreditCardNum" placeholder="4111-1111-1111-1111">
-    <!--                 
-                    <input type="text" name="ucreditCard" id="ucreditCard" placeholder="2010"> -->
+                    <div class="labels">
+                        <label for="uemail">Email</label>
+                        <span id="emailError"></span>
+                    </div>
+                    <input type="text" name="uemail" id="uemail" placeholder="johndoe@test.com"> 
+                </div>
+
+                <div class="fieldWrapper">
+                    <div class="labels">
+                        <label for="uphone">Phone</label>
+                        <span id="phoneError"></span>
+                    </div>
+                    <input type="text" name="uphone" id="uphone" placeholder="123-123-1234"> 
+                </div>
+        
+                <div class="fieldWrapper">
+                    <div class="labels">
+                        <label for="upostCode">Post Code</label>
+                        <span id="postCodeError"></span>
+                    </div>
+                    <input type="text" name="upostCode" id="upostCode" placeholder="A1B2C3"> 
                 </div>
 
                 
                 <div class="fieldWrapper">
-                    <label for="ucreditCard">Credit Card Expiry</label>
-                    <!-- I will need to use dropdown for month-->
-                    <div class="expiryFields">
-                        <div class="fieldWrapper">
-                            <label for="ucreditCardMonth">Month:</label>
-                            <br>
-                            <input type="text" name="ucreditCardMonth" id="ucreditCardMonth" placeholder="JAN" minlength="3" maxlength="3">
+                    <div class="labels">
+                        <label for="uaddress">Address</label>
+                        <span id="addressError"></span>
+                    </div>
+                    <input type="text" name="uaddress" id="uaddress">             
+                </div>
+
+                <div class="fieldWrapper">
+                    <div class="labels">
+                        <label for="ucity">City</label>
+                        <span id="cityError"></span>
+                    </div>
+                    <input type="text" name="ucity" id="ucity" placeholder="Waterloo">
+                </div>
+
+                <!-- provinces dropdown  -->
+                <!-- source : https://www12.statcan.gc.ca/census-recensement/2021/ref/dict/tab/index-eng.cfm?ID=t1_8 -->
+                <div class="fieldWrapper">
+                    <div class="labels">
+                        <label for="uprovinces">Province</label>
+                        <span id="provincesError"></span>
+                    </div> 
+                    <select name="uprovinces" id="uprovinces">
+                        <option value="">-- SELECT PROVINCE --</option> 
+                        <option value="AB">Alberta</option> 
+                        <option value="BC">British Columbia</option> 
+                        <option value="MB">Manitoba</option> 
+                        <option value="NT">Northwest Territories</option> 
+                        <option value="NU">Nunavut</option> 
+                        <option value="QC">Quebec</option> 
+                        <option value="SK">Saskatchewan</option> 
+                        <option value="YT">Yukon</option> 
+                        <option value="ON">Ontario</option> 
+                        <option value="NB">New Brunswick</option>
+                        <option value="NL">Newfoundland and Labrador</option> 
+                        <option value="NS">Nova Scotia</option> 
+                        <option value="PE">Prince Edward Island</option>
+                    </select>
+                </div>
+
+                
+                <div class="creditCardSection">
+                    <hr>
+                    <h2 class="pad-20-all"> Credit Card Details</h2>
+                    <div class="fieldWrapper">
+                        <div class="labels">
+                            <label for="ucreditCard">Credit Card Number</label>
+                            <span id="creditCardNumError"></span>
                         </div>
-                        <div class="fieldWrapper">
-                            <label for="ucreditCardYear">Year:</label>
-                            <br>
-                            <input type="number" name="ucreditCardYear" id="ucreditCardYear" placeholder="2010" max="2900">
-                        </div>
-                    </div>                
+                        
+                        <input type="text" name="ucreditCardNum" id="ucreditCardNum" placeholder="4111-1111-1111-1111">
+                    </div>
+      
+                    <div class="fieldWrapper">
+                        <h4>Credit Card Expiry</h4>
+                            <div class="fieldWrapper">
+                                <div class="labels">
+                                    <label for="ucreditExpiryMonth">Month:</label>
+                                    <span id="creditExpiryMonthError"></span>
+                                </div>
+                                <input type="text" name="ucreditExpiryMonth" id="ucreditExpiryMonth" placeholder="JAN" minlength="3" maxlength="3">
+                            </div>
+                            <div class="fieldWrapper">
+                                <div class="labels">
+                                    <label for="ucreditExpiryYear">Year:</label>
+                                    <span id="creditExpiryYearError"></span>
+                                </div>
+                                <input type="number" name="ucreditExpiryYear" id="ucreditExpiryYear" placeholder="2010" max="2900">
+                            </div>              
+                    </div>
+                    <hr>
+                </div>
+
+                <div class="fieldWrapper"> 
+                    <div class="labels">
+                        <label for="upassword">Password</label>
+                        <span id="passwordError"></span>
+                    </div>    
+                    <input type="password" name="upassword" id="upassword"> 
+                </div>
+                <div class="fieldWrapper"> 
+                    <div class="labels">
+                        <label for="uconfirmPassword">Confirm Password</label>
+                        <span id="confirmPasswordError"></span>
+                    </div>    
+                    <input type="password" name="uconfirmPassword" id="uconfirmPassword"> 
                 </div>
             </div>
-
-            <div class="submitWrapper">
-                <input type="reset" value="clear">
+            <div class="submitWrapper pad-20-all">
                 <input type="submit" value="Submit">
             </div>
         </form>
-        <div id="output">
-            output here
+        <div id="output" class="pad-20-all hidden">
+            <span id="receiptDisplay"></span>
         </div>
+        <footer>
+            <p> @2023 - Charm Johannes Relator. All rights reserved. </p>
+        </footer>
     </main>
     <!-- I have to put the js include here to ensure that the html document is loaded first because of eventListeners -->
     <script src="assets/js/custom.js"></script>
 </body>
+
 </html>
