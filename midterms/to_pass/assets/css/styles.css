@@ -1,0 +1,170 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0 auto;
+    font-size: 20px;
+    background-color: #F7CAC9;
+
+}
+
+ul {
+    display: grid;
+    grid-template-columns: 3fr 3fr 3fr;
+    list-style-type: none;
+    gap: 20px;
+    padding: 20px;
+}
+
+article.productLayout > img , article.productLayoutBuyNow > img {
+    height:300px;
+    box-shadow: 0 0 5px #BF3880;
+}
+
+article#productsWeSell, section#productsWeSell {
+    text-align: center;
+}
+
+
+input {
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 32px;
+}
+
+nav{
+    text-align: center;
+    background-color: #BF3880;
+}
+
+nav a{
+    display: inline-block;
+    padding: 20px 30px;
+    text-decoration: none;
+    font-size: 32px;
+    color: white;
+}
+
+nav a:hover{
+    background-color: #D68FB0;
+
+}
+
+section#productsWeSell, article#productsWeSell {
+    background-color: #EAE6F0;
+}
+
+
+footer{
+    color: white;
+    background-color: #BF3880;
+    text-align: center;
+    padding: 20px;
+}
+
+footer p{  
+    display: inline-block;
+    font-size: 18px;
+}
+
+#receiptDisplay {
+    white-space: pre;
+}
+
+button#checkout, div.submitWrapper > input {
+    font-size: 24px;
+    color:white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 2px solid #BF3880;
+    background: #BF3880;
+}
+
+button#checkout:hover, div.submitWrapper > input:hover {
+    background: white;
+    color: #BF3880;
+}
+
+section#productsWeSell > div, div.submitWrapper{
+    text-align: center;
+}
+
+div.fieldWrapper > input {
+    width: 100%;
+}
+
+.pad-20-all{
+    padding: 20px;
+}
+
+.pad-20-sides{
+    padding: 0px 20px;
+}
+
+.line-spacing{
+    line-height: 24px;
+}
+
+.errorBorder {
+    border: 2px solid red;
+}
+
+.errorText {
+    color: red;
+    text-align: center;
+}
+
+div.labels > span {
+    text-align: right;
+    color: red;
+}
+
+.qtyField {
+    font-size: 24px;
+    width: 10%;
+}
+
+.addBtn {
+    width: 30px;
+    font-size: 24px;
+    text-align: center;
+    color: white;
+    background-color: #BF3880;
+    border: 0;
+}
+
+.productLayoutBuyNow {
+    text-align: center;
+}
+
+.formWrapper {
+    width: 600px;
+    margin: auto;
+}
+
+.formStyles {
+    padding: 20px;
+}
+
+.labels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 5px 0;
+    justify-content: ends;
+}
+
+#output {
+    background-color: #EAE6F0;
+}
+
+.hidden {
+    display: none;
+}
+
+.fieldWrapper{
+    padding: 10px;
+}
+
+.productDescription {
+    text-align: justify;
+}
+
+

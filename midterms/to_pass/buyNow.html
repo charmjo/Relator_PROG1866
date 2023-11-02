@@ -1,0 +1,141 @@
+<!-- buyNow.html
+    buyNow.html       
+ -->
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <link rel="stylesheet" href="assets/css/styles.css">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Choice Gifts - Buy Now</title>
+ </head>
+ <body>
+    <!-- Put store name here -->
+     <header class="pad-20-all"> 
+         <h1>Choice Gifts - Buy Now</h1>
+     </header>
+     <nav>
+         <a href="index.html">Home</a>
+         <a href="buyNow.html">Buy Now!</a>
+     </nav>
+     <div class="main-container-grid">
+        <main>
+            <!-- return false prevents the program from going to the next page -->
+            <!-- return false are client-side forms, usually for client-side processes -->
+            <section id="productsWeSell" class="pad-20-all">
+                <h1>Product List</h1>
+                <ul>
+                    <li>
+                        <article class="productLayout pad-20-all">
+                            <img src="assets/images/mug.jpg" alt="mug">
+                            <div class="productInfo pad-20-sides">
+                                <h3 class="productTitle">Mug</h3>
+                                <h3 class="price">$20.50</h3>
+                                <div class="qtySelect">
+                                    <!-- deconsttruct  -->
+                                    <button class="addBtn" onclick="countItemQty(-1,'mug')" value="-"> - </button>
+                                        <input class="qtyField" type="number" name="mug" id="mug" min="0" max="999" value="0">
+                                    <button class="addBtn" onclick="countItemQty(1,'mug')" value="+"> + </button>
+                                </div>
+                                <h4> Total: $
+                                    <span id="totalMug">0.00</span>
+                                </h4>
+                            </div>
+                         </article>
+                    </li>
+        
+                    <li>
+                        <article class="productLayoutBuyNow pad-20-all">
+                            <!-- ids are case-sensitive -->
+                            <!-- labels are for accessibility purposes -->
+                            <img src="assets/images/scissors.jpg" alt="scissors">
+                            <div class="productInfo pad-20-sides">
+                                <h3 class="productTitle">Scissors</h3>
+                                <h3 class="price">$8.50</h3>
+                                <div class="qtySelect">
+                                    <!-- deconsttruct  -->
+                                    <button class="addBtn" onclick="countItemQty(-1,'scissors')" value="-"> - </button>
+                                        <input class="qtyField" type="number" name="scissors" id="scissors" min="0" max="999" value="0">
+                                    <button class="addBtn" onclick="countItemQty(1,'scissors')" value="+"> + </button>
+                                </div>
+    
+                                <h4> Total: $
+                                    <span id="totalScissors">0.00</span>
+                                </h4>
+                            </div>
+                        </article>
+                    </li>
+
+                    <li>
+                        <article class="productLayoutBuyNow pad-20-all">
+                            <!-- ids are case-sensitive -->
+                            <!-- labels are for accessibility purposes -->
+                            <img src="assets/images/scrunchie.jpg" alt="scrunchie">
+                            <div class="productInfo pad-20-sides">
+                                <h3 class="productTitle">Scrunchie</h3>
+                                <h3 class="price">$12.50</h3>
+                                <div class="qtySelect">
+                                    <!-- deconsttruct  -->
+                                    <button class="addBtn" onclick="countItemQty(-1,'scrunchie')" value="-"> - </button>
+                                        <input class="qtyField" type="text" name="scissors" id="scrunchie" maxlength="3" value="0">
+                                    <button class="addBtn" onclick="countItemQty(1,'scrunchie')" value="+"> + </button>
+                                </div>
+    
+                                <h4> Total: $
+                                    <span id="totalScrunchie">0.00</span>
+                                </h4>
+                            </div>
+                        </article>
+                    </li>
+                </ul> 
+                <div class="checkoutButton pad-20-all">
+                    <button id="checkout" onclick="checkoutItems()"> Checkout</button>
+                </div>
+            </section>
+    
+            <form id="checkoutForm" class="hidden formStyles" onsubmit="return formHandler()"  action="process.html" method="post">
+                <div class="formWrapper pad-20-all">
+                    <h1>Checkout Form</h1>
+                    <div class="fieldWrapper"> 
+                        <div class="labels">
+                            <label for="uname">Name</label>
+                            <span id="nameError"></span>
+                        </div>    
+                        <input type="text" name="uname" id="uname" placeholder="John Doe"> 
+                    </div>
+    
+                    <div class="fieldWrapper">
+                        <div class="labels">
+                            <label for="uemail">Email*</label>
+                            <span id="emailError"></span>
+                        </div>
+                        <input type="text" name="uemail" id="uemail" placeholder="johndoe@test.com"> 
+                    </div>
+    
+                    <div class="fieldWrapper">
+                        <div class="labels">
+                            <label for="uclientNo">Client Number*</label>
+                            <span id="clientNoError"></span>
+                        </div>
+                        <input type="text" name="uclientNo" id="uclientNo" placeholder="1231231234"> 
+                    </div>
+                           
+                </div>
+                <div class="submitWrapper pad-20-all">
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+            <div id="output" class="pad-20-all hidden">
+                <span id="receiptDisplay"></span>
+            </div>
+        </main>
+     </div>    
+     <footer>
+         <p>&copy; 2023 Charm Johannes Relator. All rights reserved.
+         </p>
+     </footer>
+     <!-- I have to put the js include here to ensure that the html document is loaded first because of eventListeners -->
+    <script src="assets/js/custom.js"></script>
+ </body>
+ </html>

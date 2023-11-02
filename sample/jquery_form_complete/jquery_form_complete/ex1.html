@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery ex1</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        // var loadfile = "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js";
+        // loadfile.addEventListener("load", callBackFunction);
+        // loadfile.addEventListener("error", errroCallBack);
+        
+        $(document).ready(function(){
+            //document.getElementById('hide')
+            $('#hide').click(function(){
+                $('#hideThis').slideToggle(3000);
+            });
+        });
+    </script>
+</head>
+<body>
+    <button id="hide">Hide/Show</button>
+    <p id="hideThis">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis nihil beatae ducimus libero enim ipsa voluptates rerum facere sint minus earum ipsam, nemo at voluptatem, ullam eos magnam dolorem recusandae.</p>
+
+</body>
+</html>
