@@ -1,0 +1,54 @@
+header > img{
+    height: 100px;
+    display: inline-block;
+    padding: 5px 0px 5px 0px;
+}
+
+li img {
+    height:250px;
+    box-shadow: 0 0 10px #343C44;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    display:grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 10px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.field-wrapper > input {
+    width: 75%;
+}
+
+.field-wrapper {
+    padding: 10px;
+}
+
+.form-container {
+    display:grid;
+    grid-template-columns: 3fr 3fr;
+    color: white;
+}
+
+.pad-20-all{
+    padding: 20px;
+}
+
+.pad-20-sides{
+    padding: 0px 20px;
+}
+
+.form-wrapper {
+    background-color: #142B40;
+}
+
+.product-wrapper {
+    background-color: #6A5533;
+}
