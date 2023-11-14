@@ -4,9 +4,8 @@
     - WRITE THE HTML SIDE
     - namespace
     - work on ze products on FE
-    - DISPLAY THE RESULTS
-    - DISPLAY THE ERROR
     - DISPLAY THE RECEIPT
+          - user info and computation
 
     DO THIS AFTER I DO THE FRONTEND
     - check if every field key is present in the post request 
@@ -19,44 +18,52 @@ if ($_POST){
     $person["upostcode"] = $_POST["upostcode"];
     $person["uaddress"] = $_POST["uaddress"];
     $person["ucity"] = $_POST["ucity"];
-    $person["uprovince"] = 'AB';
+    $person["uprovince"] = $_POST["uprovinces"]; // TO DO THISSSSSS
     $person["ucred_num"] = $_POST["ucred_num"];
     $person["ucred_month"] = $_POST["ucred_month"];
     $person["ucred_year"] = $_POST["ucred_year"];
     $person["upassword"] = $_POST["upassword"];
     $person["uconfirm_password"] = $_POST["uconfirm_password"];
 
-    $product1["id"] = "cookbook"; // TODO
-    $product1["name"] = "Cookbook"; // TODO
-    $product1["qty"] = 2;
+    /*
+        Notes on product lines:
+        1. Only value that I'M GETTING FROM POST : qty.
+    */
+    $product1["id"] = "cookbook";
+    $product1["name"] = "The Ultimate Final Fantasy XIV Cookbook by Victoria Rosenthal"; // TODO
+    $product1["qty"] = $_POST["cookbook_qty"];
     $product1["unit_price"] = 2.25;
     $product1["price"] = 0.00;
 
-    $product2["id"] = "saadbook"; // TODO
-    $product2["name"] = "Systems analysis and Design"; //TODO
-    $product2["qty"] = 1;
+    $product2["id"] = "saadbook";
+    $product2["name"] = "Systems Analysis and Design in a Changing World by John Satzinger";
+    $product2["qty"] = $_POST["saadbook_qty"];
     $product2["unit_price"] = 3.75;
     $product2["price"] = 0.00;
 
     $products = [$product1,$product2];
 
-    //validate
-    $keysWithError = validateLogic($person);
+    //main logic of the program.
+    $keysWithError = [];
+    $keysWithError = personValidateLogic($person);
+    
     if (!$keysWithError){
         // process
         // clear ze errors
-        // charm, take into account if the subtotal is lesser than 10. will need to put a key on the error message. I love php mutations :)
+        // clear the $product and $person array
+
+        // taking advantage of how I can easily mutate php variables for this
         $output = processForm($person,$products);
         
     } else {
         $errors = formatErrorMessages($keysWithError, $inputFields);
-        print_r($errors);
-        // display error
     }
 }
 
 
-function validateLogic ($person) {
+// would like to put this in a function file so I avoid bloating this file.
+// validates the person information fields
+function personValidateLogic ($person) {
     $withError = [];
 
     // check for blanks
@@ -66,7 +73,7 @@ function validateLogic ($person) {
         }
     }
 
-    // check for format
+    // check for format. 
     foreach ($person as $key => $value) {
         $error = false;
         if ($key == "password") {
@@ -77,11 +84,24 @@ function validateLogic ($person) {
             $error = hasError($key,$value);
         }
 
+        // $withError array is populated with the the key and the error type.
         if ($error) {
             array_push($withError,["key" => $key, "error_type" => "format"]);            
         }
     }
 
+    return $withError;
+}
+
+// I restricted the user input in the qty field. This should suffice.
+function productValidateLogic ($products) {
+    $withError = [];
+    foreach ($products as $product) {
+        $itemQty = $product["qty"]; 
+        if (hasError("number",$itemQty)) {
+            array_push($withError,["key" => $product["id"], "error_type" => "format"]);   
+        }
+    }
     return $withError;
 }
 
@@ -118,17 +138,21 @@ function hasError ($key, $value,$secondValue = "") {
     return false;
 }
 
-// process
+// getting the subtotal, tax rate, sales tax and total amount. 
 function processForm ($person, $products) {
+    // I want to avoid mutating the $person and $products array as possible since I use then for display.
+    $outputArr = [];
     $productsWithSubtotal = calcPrice($products);
     if($productsWithSubtotal["subtotal"] >= 10) {
         $productsWithTax = calcTax($productsWithSubtotal,$person["uprovince"]);
-        return $productsWithTax;
+        // add product info
+        $outputArr["product_info"] = $productsWithTax; 
+        $outputArr["person_info"] = $person;
+        // add person info
+        return $outputArr;
     } else {
         return ["key" => "subtotalIsLessThan10"];
-        // put message here
     }
-
 }
 
 // getting the subtotal
@@ -175,19 +199,24 @@ function getProvince ($provAbbr) {
 
 function formatErrorMessages ($keysWithError, $inputFields) {
     $errorMsg = [];
+
+    // messages are formatted according to error type.
     foreach ($keysWithError as $item) {
         $field = $item["key"];
         if ($item["error_type"]  == "blank") {
-            array_push($errorMsg,["{$inputFields[$field]} is {$item["error_type"]}"]); 
+            array_push($errorMsg,"{$inputFields[$field]} is {$item["error_type"]}"); 
         }
         else if ($item["error_type"]  == "format") {
-            array_push($errorMsg,["Format for {$inputFields[$field]} is invalid."]);
+            array_push($errorMsg,"Format for {$inputFields[$field]} is invalid.");
         }
     }
 
     return $errorMsg;
-
 }
-//output
 
+//output
+// be sure to clear the fields
+function resetInputFields ($person, $products) {
+    
+}
 ?>
