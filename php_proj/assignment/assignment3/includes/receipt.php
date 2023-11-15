@@ -49,18 +49,18 @@
                 </tr>
                 <!-- insert php for loop here for tables -->
                 <?php
-                $productInfo = $output["product_info"];
-                $products = $productInfo["products"];
-                foreach ($products as $row) {
+                    $productInfo = $output["product_info"];
+                    $products = $productInfo["products"];
+                    foreach ($products as $row) {
                 ?>
                     <tbody>
                     <td class="table-padding align-center"><?php echo $row["qty"];?></td>
                         <td class="table-padding"><?php echo $row["name"];?></td>
                         <td class="table-padding align-right">$<?php echo $row["unit_price"];?></td>
-                        <td class="table-padding align-right">$<?php echo $row["price"];?></td>
+                        <td class="table-padding align-right">$<?php echo number_format($row["price"],2);?></td>
                     </tbody>
                 <?php
-                }
+                    }
                 ?>
                 <!-- end of for loop tables -->
             </table>
@@ -71,15 +71,15 @@
             <table>
                 <tr>
                     <td class="table-padding bold">Subtotal:</td>
-                    <td class="table-padding align-right">$<?php echo $productInfo["subtotal"];?></td>
+                    <td class="table-padding align-right">$<?php echo number_format($productInfo["subtotal"],2);?></td>
                 </tr>
                 <tr>
                     <td class="table-padding bold">Sales Tax (<?php echo $productInfo["tax_rate"]*100;?>%):</td>
-                    <td class="table-padding align-right">$<?php echo $productInfo["sales_tax"];?></td>
+                    <td class="table-padding align-right">$<?php echo number_format($productInfo["sales_tax"],2);?></td>
                 </tr>
                 <tr>
                     <td class="table-padding bold">Grand Total:</td>
-                    <td class="table-padding align-center bigger bold">$<?php echo $productInfo["total"];?></td>
+                    <td class="table-padding align-center bigger bold">$<?php echo number_format($productInfo["total"],2);?></td>
                 </tr>
             </table>
         </div>

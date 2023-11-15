@@ -57,15 +57,15 @@ p {
     margin: 0 auto;
 }
 
-div.field-wrapper input::placeholder {
+/* div.field-wrapper input::placeholder {
     color: #BABBBC;
-}
+} */
 
 .field-wrapper > input {
     font-size: large;
-    background-color: #567B9A;
+    background-color: #DAD9D8;
     border-width: 0px;
-    color: #D9D8D7;
+    color: #142B40;
     padding: 10px 0px 10px 5px;
     width: 100%;
 }
@@ -75,14 +75,10 @@ div.labels {
 }
 
 select {
-    background-color: #567B9A;
+    background-color: #DAD9D8;
     padding: 10px 5px;
-    color: #D9D8D7;
+    color: #142B40;
     text-align: center;
-}
-
-select option {
-    color: #D9D8D7;
 }
 
 .field-wrapper {
