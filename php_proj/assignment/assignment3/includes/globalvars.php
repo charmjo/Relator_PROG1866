@@ -6,7 +6,7 @@
         "uemail" => "Email",
         "upostcode" => "Postcode",
         "uaddress" => "Address",
-        "ucity" => "Address",
+        "ucity" => "City",
         "uprovince" => "Province",
         "ucred_num" => "Credit Card Number",
         "ucred_month" => "Credit Card Expiry Month",
