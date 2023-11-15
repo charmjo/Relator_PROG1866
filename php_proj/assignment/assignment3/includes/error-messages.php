@@ -1,13 +1,11 @@
-<?php
-    echo "<pre>";
-    print_r($errors);
-    echo "</pre>";
-?>
-
 <div class="error-messages">
-    <ol>
-        <?php foreach ($errors as $error) { ?>
-        <li> <?php echo $error; ?> </li>
-        <?php } ?>
+    <ol class="line-spacing">
+        <?php
+            foreach ($errors as $error) { 
+        ?>
+        <li class="padding-20-all"><?php echo $error;?> </li>
+        <?php
+            } 
+        ?>
     </ol>
 </div>

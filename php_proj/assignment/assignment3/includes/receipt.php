@@ -10,8 +10,8 @@
         if(isset($output["key"])) {
     ?>
     <!-- insert html here -->
-    <div class="no-receipt">
-        <h3>Your receipt cannot be displayed because the total cost of items you bought is less than 10. We apologize.</h3>
+    <div class="no-receipt error-messages">
+        <p>Your receipt cannot be displayed because the total cost of items you bought is less than 10. We apologize.</p>
     </div>
     <!-- if subtotal is more than 10 -->
     <?php
@@ -20,54 +20,71 @@
             // CHARM DO NOT FORGET TO PUT THE DOLLARS coz it caused you your grade. okay?
     ?>
     <!-- insert html here -->
-    <section class="user-info">
+    <h3 class="pad-20-vertical">Customer Receipt</h3>
+    <section class="user-info pad-20-vertical">
         <div class="person-info">
             <ul>
-                <li>Sold to: <?php echo $personInfo["uname"]; ?></li>
-                <li>Email: <?php echo $personInfo["uemail"]; ?></li>
-                <li>Phone: <?php echo $personInfo["uphone"]; ?></li>
-                <li>Address: <?php echo "{$personInfo["uaddress"]}, {$personInfo["ucity"]}, {$personInfo["uprovince"]}, {$personInfo["upostcode"]}";?></li>  
+                <li><b>Sold to:</b> <?php echo $personInfo["uname"]; ?></li>
+                <li><b>Email:</b> <?php echo $personInfo["uemail"]; ?></li>
+                <li><b>Phone:</b> <?php echo $personInfo["uphone"]; ?></li>
+                <li><b>Address:</b> <?php echo "{$personInfo["uaddress"]}, {$personInfo["ucity"]}, {$personInfo["uprovince"]}, {$personInfo["upostcode"]}";?></li>  
             </ul>
         </div>
         <div class="credit-info">
             <ul>
-                <li>Number: <?php echo $personInfo["ucred_num"];?></li>
-                <li>Expiry: <?php echo "{$personInfo["ucred_month"]}/{$personInfo["ucred_year"]}"; ?></li>
+                <li><b>Credit Number:</b> <?php echo $personInfo["ucred_num"];?></li>
+                <li><b>Credit Expiry:</b> <?php echo "{$personInfo["ucred_month"]}/{$personInfo["ucred_year"]}"; ?></li>
             </ul>
         </div>
     </section>
-    <table class="product-info">
-        <tr>
-            <th>Product Name</th>
-            <th>Unit Price</th>
-            <th>Quantity</th>
-            <th>Total</th>
-        </tr>
-        <!-- insert php for loop here for tables -->
-        <?php
-        $productInfo = $output["product_info"];
-        $products = $productInfo["products"];
-        foreach ($products as $row) {
-        ?>
-            <tr>
-                <td><?php echo $row["name"];?></td>
-                <td>$<?php echo $row["unit_price"];?></td>
-                <td><?php echo $row["qty"];?></td>
-                <td>$<?php echo $row["price"];?></td>
-            </tr>
-        <?php
-        }
-        ?>
-        <!-- end of for loop tables -->
-    </table>
-    <section class="total">
-    <!-- try to align this on the right -->
-        <ul>
-            <li>Subtotal: $<?php echo $productInfo["subtotal"];?></li>
-            <li>Sales Tax: (<?php echo $productInfo["tax_rate"];?>%): $<?php echo $productInfo["sales_tax"];?></li>
-            <li>Grand Total: $<?php echo $productInfo["total"];?></li>
-        </ul>
+
+    <section class="products">
+        <div class="table-list">
+            <table class="product-list">
+                <tr>
+                <th class="table-padding">Quantity</th>
+                    <th class="table-padding">Description</th>
+                    <th class="table-padding">Unit Price</th>
+                    <th class="table-padding">Total</th>
+                </tr>
+                <!-- insert php for loop here for tables -->
+                <?php
+                $productInfo = $output["product_info"];
+                $products = $productInfo["products"];
+                foreach ($products as $row) {
+                ?>
+                    <tbody>
+                    <td class="table-padding align-center"><?php echo $row["qty"];?></td>
+                        <td class="table-padding"><?php echo $row["name"];?></td>
+                        <td class="table-padding align-right">$<?php echo $row["unit_price"];?></td>
+                        <td class="table-padding align-right">$<?php echo $row["price"];?></td>
+                    </tbody>
+                <?php
+                }
+                ?>
+                <!-- end of for loop tables -->
+            </table>
+        </div>
+    
+        <div class="total pad-20-vertical">
+        <!-- try to align this on the right -->
+            <table>
+                <tr>
+                    <td class="table-padding bold">Subtotal:</td>
+                    <td class="table-padding align-right">$<?php echo $productInfo["subtotal"];?></td>
+                </tr>
+                <tr>
+                    <td class="table-padding bold">Sales Tax (<?php echo $productInfo["tax_rate"]*100;?>%):</td>
+                    <td class="table-padding align-right">$<?php echo $productInfo["sales_tax"];?></td>
+                </tr>
+                <tr>
+                    <td class="table-padding bold">Grand Total:</td>
+                    <td class="table-padding align-center bigger bold">$<?php echo $productInfo["total"];?></td>
+                </tr>
+            </table>
+        </div>
     </section>
+    <p class="end-tag"> Thank you for shopping with us. Hope to see you soon!</p>
     <!-- end tag for else -->
     <?php 
         }

@@ -1,7 +1,31 @@
+body{
+    margin: 0 auto;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+main {
+    align-items: center;
+}
 header > img{
     height: 100px;
     display: inline-block;
     padding: 5px 0px 5px 0px;
+}
+
+header {
+    background-color: #303840;
+    text-align: center;
+}
+
+form {
+    background-color: #DAD9D8;
+}
+
+footer {
+    background-color: #303840;
+    text-align: center;
+    padding: 20px;
+    color: white;
 }
 
 li img {
@@ -13,7 +37,7 @@ ul {
     list-style-type: none;
 }
 
-li {
+section.product-wrapper ul li {
     display:grid;
     grid-template-columns: 1fr 3fr;
     gap: 10px;
@@ -21,34 +45,252 @@ li {
 
 h1 {
     text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+h3 {
+    margin: 0 auto;
+}
+
+p {
+    margin: 0 auto;
+}
+
+div.field-wrapper input::placeholder {
+    color: #BABBBC;
 }
 
 .field-wrapper > input {
-    width: 75%;
+    font-size: large;
+    background-color: #567B9A;
+    border-width: 0px;
+    color: #D9D8D7;
+    padding: 10px 0px 10px 5px;
+    width: 100%;
+}
+
+div.labels {
+    padding: 10px 10px 10px 0px;
+}
+
+select {
+    background-color: #567B9A;
+    padding: 10px 5px;
+    color: #D9D8D7;
+    text-align: center;
+}
+
+select option {
+    color: #D9D8D7;
 }
 
 .field-wrapper {
-    padding: 10px;
+    padding: 10px 0px;
+    display: block;
 }
 
 .form-container {
     display:grid;
     grid-template-columns: 3fr 3fr;
+    gap: 30px;
     color: white;
-}
-
-.pad-20-all{
-    padding: 20px;
-}
-
-.pad-20-sides{
-    padding: 0px 20px;
-}
-
-.form-wrapper {
     background-color: #142B40;
 }
 
-.product-wrapper {
-    background-color: #6A5533;
+.pad-20-all {
+    padding: 20px;
 }
+
+.pad-20-horizontal {
+    padding: 0px 20px;
+}
+
+.pad-20-vertical {
+    padding: 20px 0px;
+}
+
+.form-wrapper {
+    padding-bottom: 20px;
+}
+
+.expiry-section{
+    padding-top: 20px;
+}
+
+.expiry-section p {
+    font-style: italic;
+}
+
+.expiry-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.expiry-fields > div.field-wrapper {
+    padding: 0px;
+}
+
+.product-wrapper {
+    color: #142B40;
+    padding-bottom: 10px;
+    margin: 0 auto;
+    display: block;
+    background-color: white;
+}
+
+.form-wrap {
+    margin: 0 auto;
+    width: 75%;
+}
+
+.qtySelect input {
+    font-size: large;
+    border-width: 1px;
+    border-color: #142B40;
+    padding: 10px 0px 10px 5px;
+    background-color: #DAD9D8;
+}
+
+.product-title {
+    padding: 10px 0px;
+}
+
+.product-subtitle {
+    font-style: italic;
+    margin: 0 auto;
+    padding-bottom: 20px;
+
+}
+
+.price {
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.submitWrapper {
+    text-align: center;
+}
+
+div.submitWrapper > input {
+    font-size: larger;
+    border: 2px solid white;
+    color: white;
+    background-color: #84693F;
+    padding: 20px 50px;
+    align-self: center;
+    border-radius: 10px;
+}
+div.submitWrapper > input:hover {
+    border: 2px solid #84693F;
+    color: #84693F;
+    background-color: white;
+    align-self: center;
+}
+
+/* start of error-messages */
+.output-wrapper {
+    padding: 5%;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #142B40;
+}
+
+.output-wrapper h3 {
+    text-align: center;
+}
+
+.line-spacing{
+    line-height: 24px;
+}
+
+.error-messages {
+    background-color: #FFCCCC;
+    padding: 20px;
+    
+}
+
+.error-messages ol {
+    margin: 0 auto;
+    list-style-type: decimal;
+    width: 75%;
+    align-self: center;
+}
+
+/* start of output */
+.no-receipt {
+    font-style: italic;
+    text-align: center;
+}
+
+table, td,tr,th {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+table.product-list {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+}
+
+.table-padding {
+    padding: 5px 20px;
+}
+
+th {
+    background-color: #D7D8D9;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.user-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18%;
+    align-self: center;
+}
+
+.user-info ul {
+    margin: auto;
+    padding: 0px;
+    line-height: 28px;
+}
+
+.person-info, .credit-info {
+    padding-left: 20px;
+}
+
+.total > table {
+    margin-right: 0px;
+    width: auto;
+    margin-left: auto;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.bigger {
+    font-size: x-large;
+}
+
+.end-tag {
+    text-align: center;
+    font-style: italic;
+}
+
+
+
+
