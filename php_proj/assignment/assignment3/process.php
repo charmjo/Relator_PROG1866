@@ -1,16 +1,8 @@
 <?php
 /*
  TO DO:
-    - WRITE THE HTML SIDE
-    - namespace
-    - work on ze products on FE
-    - DISPLAY THE RECEIPT
-          - user info and computation
 
-    DO THIS AFTER I DO THE FRONTEND
-    - check if every field key is present in the post request 
 */
-// make this dynamic but I wanted to do a class implementation of this 
 if ($_POST){
     $person["uname"] = $_POST["uname"];
     $person["uphone"] = $_POST["uphone"];
@@ -18,7 +10,7 @@ if ($_POST){
     $person["upostcode"] = $_POST["upostcode"];
     $person["uaddress"] = $_POST["uaddress"];
     $person["ucity"] = $_POST["ucity"];
-    $person["uprovince"] = $_POST["uprovinces"]; // TO DO THISSSSSS
+    $person["uprovince"] = $_POST["uprovinces"];
     $person["ucred_num"] = $_POST["ucred_num"];
     $person["ucred_month"] = $_POST["ucred_month"];
     $person["ucred_year"] = $_POST["ucred_year"];
@@ -30,7 +22,7 @@ if ($_POST){
         1. Only value that I'M GETTING FROM POST : qty.
     */
     $product1["id"] = "cookbook";
-    $product1["name"] = "The Ultimate Final Fantasy XIV Cookbook by Victoria Rosenthal"; // TODO
+    $product1["name"] = "The Ultimate Final Fantasy XIV Cookbook by Victoria Rosenthal";
     $product1["qty"] = $_POST["cookbook_qty"];
     $product1["unit_price"] = 2.25;
     $product1["price"] = 0.00;
@@ -48,9 +40,7 @@ if ($_POST){
     $keysWithError = personValidateLogic($person);
     
     if (!$keysWithError){
-        // process
-        // clear ze errors
-        // clear the $product and $person array
+        // decided not to clear the person array as it is easier to modify if the fields are filled.
 
         // taking advantage of how I can easily mutate php variables for this
         $output = processForm($person,$products);
@@ -61,7 +51,6 @@ if ($_POST){
 }
 
 
-// would like to put this in a function file so I avoid bloating this file.
 // validates the person information fields
 function personValidateLogic ($person) {
     $withError = [];
@@ -116,9 +105,7 @@ function hasError ($key, $value,$secondValue = "") {
         if (!is_numeric(array_search($value,$abbrCol))) return true;
     } 
     else if ($key == "ucred_month") {
-        $abbrCol = array_column(MONTHS, 'abbr');
-        // array_search returns the index.
-        if (!is_numeric(array_search($value,$abbrCol))) return true;
+        if (!preg_match(REGEX_MONTH_LIST, $value)) return true;
     } 
     else if ($key == "ucred_num") {
         if (!preg_match(REGEX_CREDIT_CARD_NUM, $value)) return true;    
@@ -143,7 +130,7 @@ function processForm ($person, $products) {
     // I want to avoid mutating the $person and $products array as possible since I use then for display.
     $outputArr = [];
     $productsWithSubtotal = calcPrice($products);
-    if($productsWithSubtotal["subtotal"] >= 10) {
+    if($productsWithSubtotal["subtotal"] >= PRICE_LIMIT) {
         $productsWithTax = calcTax($productsWithSubtotal,$person["uprovince"]);
         // add product info
         $outputArr["product_info"] = $productsWithTax; 
@@ -213,6 +200,8 @@ function formatErrorMessages ($keysWithError, $inputFields) {
 
     return $errorMsg;
 }
+
+
 
 //output
 // be sure to clear the fields

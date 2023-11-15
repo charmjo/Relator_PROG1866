@@ -1,5 +1,4 @@
 <?php
-//constants, I should place this on a separate file
     define("PROVINCES", [
         ["abbr" => "NB","name" => "New Brunswick", "tax_percent" => .15],
         ["abbr" => "NL","name" => "Newfoundland and Labrador", "tax_percent" => .15],
@@ -31,10 +30,12 @@
         ["abbr" => "DEC","name" => "December"],
     ]);
 
-    // see assignment 2 for this.
+    // Regexes : see assignment 2 for this.
     define("REGEX_CREDIT_CARD_NUM","/^(\d{4}\-){3}\d{4}$/");
     define("REGEX_CREDIT_CARD_YEAR","/^\d{4,4}$/");
     define("REGEX_EMAIL","/^(\w{3,}(\.)?)+@([a-z0-9]+\.)+[a-z0-9]+$/i");
     define("REGEX_NUMBER","/^\d+$/");
+    define("REGEX_MONTH_LIST","/^(JAN|FEB|MAR|APR|MAY|JUN|JULY|AUG|SEPT|OCT|NOV|DEC)$/");
 
+    define("PRICE_LIMIT",10);
 ?>
