@@ -16,7 +16,6 @@
     ];
 
     // initialize
-    // add products later
     $person = [
         "uname" => "",
         "uphone" =>"",

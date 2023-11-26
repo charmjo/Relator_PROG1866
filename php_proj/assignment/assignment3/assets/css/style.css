@@ -57,10 +57,6 @@ p {
     margin: 0 auto;
 }
 
-/* div.field-wrapper input::placeholder {
-    color: #BABBBC;
-} */
-
 .field-wrapper > input {
     font-size: large;
     background-color: #DAD9D8;
@@ -147,6 +143,10 @@ select {
     border-color: #142B40;
     padding: 10px 0px 10px 5px;
     background-color: #DAD9D8;
+}
+
+.qtySelect > label {
+    font-weight: 600;
 }
 
 .product-title {
@@ -268,10 +268,29 @@ th {
     padding-left: 20px;
 }
 
-.total > table {
+.total {
+    display: table;
+    width: 25%;
+    border: 1px solid gray;
     margin-right: 0px;
-    width: auto;
     margin-left: auto;
+}
+
+.total-row {
+    display: table-row;
+} 
+
+.label {
+    display: table-cell;
+    width: 70%;
+    border: 1px solid gray;
+    font-weight: bold;
+}
+
+.value {
+    display: table-cell;
+    width: 30%;
+    border: 1px solid gray;
 }
 
 .bold {

@@ -2,7 +2,6 @@
 - I wanted to minimize the number of PHP tags as possible so it is easier to read. 
 - The thing is, I prefer the presence of php tags rather than echoing html tags inside php. I find it harder to read html tags in strings.
 - This little template will show the output.
-- personal notes: do this last coz I know you have the most experience when it comes to things like this.
 -->
 <div class="output-wrapper">
     <!-- if subtotal is lesser than 10 -->
@@ -17,7 +16,6 @@
     <?php
         } else {
             $personInfo = $output["person_info"];
-            // CHARM DO NOT FORGET TO PUT THE DOLLARS coz it caused you your grade. okay?
     ?>
     <!-- insert html here -->
     <h3 class="pad-20-vertical">Customer Receipt</h3>
@@ -66,23 +64,25 @@
             </table>
         </div>
     
-        <div class="total pad-20-vertical">
-        <!-- try to align this on the right -->
-            <table>
-                <tr>
-                    <td class="table-padding bold">Subtotal:</td>
-                    <td class="table-padding align-right">$<?php echo number_format($productInfo["subtotal"],2);?></td>
-                </tr>
-                <tr>
-                    <td class="table-padding bold">Sales Tax (<?php echo $productInfo["tax_rate"]*100;?>%):</td>
-                    <td class="table-padding align-right">$<?php echo number_format($productInfo["sales_tax"],2);?></td>
-                </tr>
-                <tr>
-                    <td class="table-padding bold">Grand Total:</td>
-                    <td class="table-padding align-center bigger bold">$<?php echo number_format($productInfo["total"],2);?></td>
-                </tr>
-            </table>
+
+        <div class="total-container pad-20-vertical">
+            <div class="total">
+            <!-- try to align this on the right -->
+                <div class="total-row">
+                    <div class="label table-padding">Subtotal:</div>
+                    <div class="value align-right table-padding"> $<?php echo number_format($productInfo["subtotal"],2);?></div>
+                </div>
+                <div class="total-row">
+                    <div class="label table-padding">Sales Tax (<?php echo $productInfo["tax_rate"]*100;?>%):</div>
+                    <div class="value align-right table-padding">$<?php echo number_format($productInfo["sales_tax"],2);?></div>
+                </div>
+                <div class="total-row">
+                    <div class="label table-padding">Grand Total:</div>
+                    <div class="value align-right table-padding bold bigger">$<?php echo number_format($productInfo["total"],2);?></div>
+                </div>
+            </div>
         </div>
+        
     </section>
     <p class="end-tag"> Thank you for shopping with us. Hope to see you soon!</p>
     <!-- end tag for else -->

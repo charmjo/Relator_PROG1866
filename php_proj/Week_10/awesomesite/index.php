@@ -1,4 +1,5 @@
 <?php
+  include('includes/dbconn.php');
   $errors = '';
   $output = '';
   if(!empty($_POST)){
@@ -6,10 +7,10 @@
     // fetch
     // really need to make a collection checker instead of manually checking the $_POST variable
     $name = $_POST['name'];
-    $email = $_POST['name'];
-    $phone = $_POST['email'];
-    $postcode = $_POST['phone'];
-    $lunch = $_POST['postcode'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $postcode = $_POST['postcode'];
+    $lunch = $_POST['lunch'];
     $tickets = $_POST['tickets'];
     $lunch = $_POST['lunch'];
     $campus = $_POST['campus'];
@@ -36,7 +37,34 @@
         Tickets: $tickets <br>
         Total Cost: $totalCost <br>
       ";
+
+      $sqlQuery = "INSERT INTO `orders` (`id`, `name`,`email`,  `phone`, `postcode`, `lunch`, `tickets`, `campus`, `totalCost`)
+                          VALUES (NULL, '$name', '$email', '$phone', '$postcode', '$lunch', '$tickets', '$campus', '$totalCost')";
+
+            /*Week 11 Notest:
+        1. Can import a .sql.zip file in phpMyAdmin. Man I should've done this in phpmyadmin. faaaak
+        2. PDO vs mysqli
+            mysqli - for mysql dbs specifically
+            PDO - for all dbs
+        3. Mysqli with postgres - can but have to test according to the instructor.
+      
+      */
+     
+
+      // check if connection has any issues
+      // even without this, the db will still log errors 
+      if ($db->connect_error) {
+        die("Something went wrong yieeeee");
+      } 
+
+      $sqlResult = $db->query($sqlQuery);
+      if (!$sqlResult) {
+        exit($db->error); // show this in development mode
+      //  exit('Some error.. please try again..'); // production mode
+      }
+
     }
+
   }
 
   //output

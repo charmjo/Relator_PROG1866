@@ -141,20 +141,20 @@
                                 <p class="product-subtitle">by Victoria Rosenthal</p>
                                 <h3 class="price">$2.25</h3>
                                 <div class="qtySelect">
-                                    <label for="cookbook_qty" hidden> Cookbook Qty</label>
+                                    <label for="cookbook_qty">Quantity: &nbsp;</label>
                                     <input class="qtyField" type="number" name="cookbook_qty" id="cookbook_qty" min="0" max="999" value="0" placeholder="0">
                                 </div>
                             </div>
                         </li>
                         <hr>
-                        <li class="pad-20-all">
+                        <li class="pad-20-all expiry-fields">
                             <img src="assets/images/saad_book.JPG" alt="Systems Analysis and Design in a Changing World">
                             <div class="productInfo pad-20-horizontal">
                                 <h3 class="product-title">Systems Analysis and Design in a Changing World</h3>
                                 <p class="product-subtitle">by John Satzinger</p>
                                 <h3 class="price">$3.75</h3>
                                 <div class="qtySelect">
-                                    <label for="saadbook_qty" hidden> Cookbook Qty</label>
+                                    <label for="saadbook_qty">Quantity: &nbsp;</label>
                                     <input class="qtyField" type="number" name="saadbook_qty" id="saadbook_qty" min="0" max="999" value="0" placeholder="0">
                                 </div>
                             </div>

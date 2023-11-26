@@ -1,4 +1,26 @@
-<!DOCTYPE html>
+<?php
+  session_start();
+  include('includes/dbconn.php');
+  if(!empty($_POST)) { // checks if the form has been submitted
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $sqlQuery = "SELECT * FROM `user_login` WHERE `username`='$username' AND `password`='$password'";
+    $sqlResult = $db->query($sqlQuery);
+
+      // a session is a variable created on the server
+    if($sqlResult->num_rows == 1) { // if a user with the username and password combination is found.
+      // store the username in session and set logged in as true
+      $_SESSION['username'] = $username;
+      $_SESSION['logged_in'] = TRUE;
+
+      header('Location:orders.php'); // redirect the user to the orders page
+    }
+  }
+  
+  
+  
+?><!DOCTYPE html>
 <html>
 
 <head>

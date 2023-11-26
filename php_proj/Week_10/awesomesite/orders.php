@@ -1,3 +1,14 @@
+<?php 
+  session_start();
+    include('includes/dbconn.php');
+
+    //send user to login page
+    if(!isset($_SESSION['logged_in'])){
+      header('Location:login.php');
+      exit();
+    }
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -16,7 +27,9 @@
   <header>
     Welcome Admin!
   </header>
-  <?php include('includes/nav.php') ?>
+  <?php include('includes/nav.php');
+    include('includes/dbconn.php');
+   ?>
   <main>
     <table class="ordersTable">
       <thead>
@@ -28,12 +41,25 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Iron Man</td>
-          <td>ironman@avengers.com</td>
-          <td>$500.99</td>
-        </tr>
+        <?php
+          $sqlQuery = "SELECT * FROM `orders`";
+          $sqlResult = $db->query($sqlQuery);
+          if ($sqlResult->num_rows > 0) {
+            // fetch_assoc gives an associative array with the name of the columns given
+            while ($row = $sqlResult->fetch_assoc()) {
+              // print the data
+              ?>
+                <tr>
+                  <td><?php echo $row['id'];?></td>
+                  <td><?php echo $row['name'];?></td>
+                  <td><?php echo $row['email'];?></td>
+                  <td><?php echo $row['totalCost'];?></td>
+                </tr>
+              <?php
+            }
+          }
+        ?>
+        
       </tbody>
     </table>
   </main>
