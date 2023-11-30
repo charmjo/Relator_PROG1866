@@ -1,5 +1,5 @@
 body{
-    background-color: #ad81d3;
+    background-color: #ebebeb;
     font-family: 'Kalam', cursive;
     font-size: 20px;
     width: 960px;
@@ -71,7 +71,7 @@ input[type="submit"]:active{
 }
 
 .top_menu{
-    background-color: #8c087a;
+    background-color: #3d3c3d;
     border: 3px solid white;
     box-shadow: 0 0 10px #2c2c2c;
     color: white;

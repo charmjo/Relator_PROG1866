@@ -71,22 +71,34 @@
   <main>
     <section class="w50">
       <form name="myform" id="myform" method="POST" action="process.php">
-        <label>Name</label>
+        <label for="name">Name</label>
         <input id="name" value=""  placeholder="First Last" type="text" name="name"><br />
 
-        <label>Email</label>
+        <label for="email">Email</label>
         <input id="email" value="" placeholder="email@domain.com" type="email" name="email"><br />
 
-        <label>Phone</label>
+        <label for="phone">Phone</label>
         <input id="phone" value="" placeholder="123-123-1234" type="phone" name="phone"><br />
 
-        <label>Post Code</label>
+        <label for="postcode">Post Code</label>
         <input id="postcode" value="" placeholder="X9X 9X9" type="postcode" name="postcode"><br />
 
+        <fieldset>
+          <legend>Will you have lunch?</legend>
+          <div>
+            <input class="lunch" type="radio" value="yes" id="radio1" checked name="lunch">
+            <label for="radio1">Yes</label>
+          </div>
+            <input class="lunch" type="radio" value="no" id="radio2" name="lunch">
+            <label for="radio2">No</label>
+          <div>
+
+          </div>
+        </fieldset>
+
+
         <label>Will you have lunch?</label>
-        <input class="lunch" type="radio" value="yes" id="radio1" checked name="lunch">Yes
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <input class="lunch" type="radio" value="no" id="radio2" name="lunch">No
+        
         <br />
 
         <label>Number of Tickets</label>
@@ -104,6 +116,10 @@
           <option value="Waterloo">Waterloo</option>
           <option value="Cambridge">Cambridge</option>
         </select>
+
+        <div>
+          <input aria-labelledby="" type="checkbox" name="" id="">
+        </div>
 
         <br /><br />
 
